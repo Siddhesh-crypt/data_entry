@@ -29,16 +29,13 @@ class _ViewPageState extends State<ViewPage> {
 
   DatabaseReference dbref = FirebaseDatabase.instance.ref();
   DatabaseReference del = FirebaseDatabase.instance.ref().child("Information");
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   void initState(){
     super.initState();
 
     retriveInfodata();
-  }
-
-  void SignOut(){
-    FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -49,8 +46,16 @@ class _ViewPageState extends State<ViewPage> {
         title: const Text("View Data", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(onPressed: (){
-            SignOut();
+          IconButton(onPressed: () async{
+            await auth.signOut().then((value){
+              Fluttertoast.showToast(
+                msg: "Sign Out",
+                gravity: ToastGravity.BOTTOM,
+                backgroundColor: Colors.red,
+                textColor: Colors.white
+              );
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
+            });
           }, icon: Icon(Icons.settings_power, color: Colors.white, size: 30,))
         ],
         leading: IconButton(onPressed: () {
