@@ -1,3 +1,4 @@
+import 'package:data_entry/ForgotPasswordPage.dart';
 import 'package:data_entry/ViewPage.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -140,7 +141,9 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
+        },
         child: Padding(
           padding: const EdgeInsets.only(right: 0.0),
           child: Text(
@@ -203,7 +206,7 @@ class _LoginPageState extends State<LoginPage> {
                 email: emailController.text,
                 password: passwordController.text).then((value) => {
               Fluttertoast.showToast(
-                  msg: "Account Created",
+                  msg: "You are Sign In",
                   backgroundColor: Colors.green,
                   textColor: Colors.white,
                   toastLength: Toast.LENGTH_LONG,

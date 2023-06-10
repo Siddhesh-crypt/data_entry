@@ -1,4 +1,5 @@
 
+import 'package:data_entry/LoginPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -36,6 +37,10 @@ class _ViewPageState extends State<ViewPage> {
     retriveInfodata();
   }
 
+  void SignOut(){
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +50,7 @@ class _ViewPageState extends State<ViewPage> {
         centerTitle: true,
         actions: <Widget>[
           IconButton(onPressed: (){
-            FirebaseAuth.instance.signOut();
+            SignOut();
           }, icon: Icon(Icons.settings_power, color: Colors.white, size: 30,))
         ],
         leading: IconButton(onPressed: () {
